@@ -2,7 +2,14 @@ import _ from "lodash"
 
 export default {
   setInject: function (seedList, injectFunc) {
-    let main, roopImp, roopMethods, implement, executeInject, inherit
+    let main,
+      inherit,
+      roopImp,
+      roopMethods,
+      implement,
+      executeInject,
+      roopInject
+
     let BaseService = {
       data: Object,
       init: function (data) {
@@ -18,8 +25,6 @@ export default {
     }
 
     main = function () {
-      let roopInject = executeInject(injectFunc)
-
       _.reduce(
         [roopImp, roopInject],
         function (seed, funcEl) {
@@ -59,6 +64,8 @@ export default {
         })
       }
     }
+
+    roopInject = executeInject(injectFunc)
 
     inherit = function (proto) {
       var F = function () {}
